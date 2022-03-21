@@ -1,0 +1,20 @@
+description = 'tintsyflow'
+group = 'io.github.olahtibi'
+version = '1.0.0'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+dependencies {
+    testCompile 'org.spockframework:spock-core:1.3-groovy-2.4'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'io.github.olahtibi.tintsyflow.MainProgram'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
